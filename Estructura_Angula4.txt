@@ -1,0 +1,97 @@
+Estructura del fichero de Angula 4:
+
+-Node_modules:
+Guarda todas las dependencias que npm se descarga
+
+- .angular-cli.json:
+  Configuración del CLI
+- .editorconfig:
+  No interesa
+- .gitignore:
+  Excepciones para que no detecte GIT y no commitee
+- Karma.conf.js:
+  Test funcionales
+- Package.json:
+  Dependencias y paquetes necesarios para que Angular4 funcione
+- tsconfig.json:
+  Fichero de configuración del typescript
+- tslint.json:
+  También es configuración del typescript
+
+
+- src:
+    + tsconfig.**.json y typings:
+      Ficheros de configuración del typescript
+    + main.ts:
+      Aquí se carga el módulo principal de la app
+    + index.html:
+      Página principal que carga el Framework
+    + environments:
+      Variables globales para entornos de desarrollo o producción
+    + assets:
+      Directorio donde ubicar imágenes y estilos css
+    + app:
+      Contiene los componentes (.ts, html, css)
+      app.component.ts: Componente principal
+      app.module.ts: módulo principal en el que se cargan los componentes
+
+/************************************************************************************/
+
+Elementos que conforman Angular
+
+- COMPONENTES
+  + Un componente controla un trozo de pantalla o vista.
+  + La lógica de un componente dentro de una clase es dar soporte a una vista interactuando con ella a través de un API con propiedades y métodos.
+  + El componente hace de mediador entre la vista a través de la plantilla y la lógica de la app, donde se incluirá el modelo de datos; es decir, una especie de controlador ****
+
+  + Componente app.component.ts: Es el componente principal que da soporte al resto de componentes
+
+- PLANTILLAS
+  + Las plantillas van a definir la vista de los componentes
+  + Son htmls y tienen sintaxis especial de Angular. Trabajando con el databinding y las directivas
+
+- DECORADORES Y METADATOS
+  + Con los decoradores (patrón de diseño) vamos a configurar dinámicamente atributos/metadatos de las clases y componentes.
+  + Los metadatos van a describir a las clases pero también describen relaciones, por ejemplo si tenemos un componente y una plantilla el metadato se va a encargar de decirle a Angular que ese componente y esa plantilla van juntos, entre otras muchas cosas
+
+- SERVICIOS
+  + Son clases con un objeto claro, facilita la reutilización, son un tipo de componente dentro de la arquitectura de Angular, y mediante la inyección de dependencias los podemos usar en otros componentes principales.
+
+-PROVIDERS
+  + Son servicios que nos proveen de datos o funcionalidades mediante sus métodos.
+
+- DIRECTIVAS
+  + Funcionalidades aplicables al DOM y a los elementos HTML en las plantillas de un componente.
+  + Una directiva puede servir para controlar que un div se muestre o no, o recorrer un array en la vista (directivas estructurales, estructuras condicionales y de control) o incluso también puede servir para darle un estilo a un elemento del HTML o también para interactuar con el modelo de datos del componente.
+
+  + Básicamente son nuevos atributos para aplicarle a cualquier cosa en la vista/plantilla
+
+/************************************************************************************/
+
+Estructuración de la carpeta app
+
+- Crear carpeta por componente
+
+/************************************************************************************/
+
+TYPESCRIPT
+
+  - Pseudolenguaje que permite dar a Javascript más funcionalidades extras
+  - Tipado fuerte
+  - Mejor orientación a objetos
+  - Ultimas características de Emacs6
+
+  - Variables y tipos de datos:
+    + Definición: 
+        private / public nombreVariable: string = 'Mi nombre'
+
+
+    + En el constructor dar el valor de las variables declaradas
+    + En el ngOnInit llamar a las funciones, a los servicios. Este método es el primero que se carga después del constructor
+
+  - VAR / LET:
+    + let es la nueva forma de definir una variable.
+    + La diferencia entre let y var es el alcance de la variable. let se queda dentro del ámbito en el que ha sido declarada.
+      VAR: Ámbito GLOBAL
+      LET: Ámbito a nivel de BLOQUE
+
