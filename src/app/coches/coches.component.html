@@ -1,0 +1,23 @@
+<h1>Componente de coches</h1>
+
+<form #formCoche="ngForm" (ngSubmit)="onSubmit()">
+<p>
+  <label>Nombre:</label>
+  <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="coche.nombre" required >
+  <span *ngIf="nombre.touched && !nombre.valid"> El nombre del coche es incorrecto</span>
+</p>
+<p>
+  <label>Caballos:</label>
+  <input type="text" name="caballos" #caballos="ngModel" [(ngModel)]="coche.caballos" required pattern="[0-9]+">
+  <span *ngIf="caballos.touched && !caballos.valid"> Los caballos es incorrecto</span>
+</p>
+<p>
+  <label>Color:</label>
+  <input type="text" name="color" #color="ngModel" [(ngModel)]="coche.color" required>
+  <span *ngIf="color.touched && !color.valid"> Elcolor es incorrecto</span>
+</p>
+
+
+
+   <input type="submit" value="GUARDAR">
+</form>

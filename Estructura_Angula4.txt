@@ -95,3 +95,93 @@ TYPESCRIPT
       VAR: Ámbito GLOBAL
       LET: Ámbito a nivel de BLOQUE
 
+  *****IMPORTANTE utilizar las funciones de flecha en las funciones callback para poder salir del ámbito de la función
+
+/************************************************************************************/
+
+DEFINICIóN DE UNA VARIABLE GENERAL (definición de un MODELO)
+
+  - Es posible crear un componente empleado.ts que contenga la definición de una clase que luego servirá para instanciar varias variables
+    con la llamada 'new' 
+      por ejemplo: 
+                    this.empleado = new Empleado('David', 45, 'Cocinero', true);
+
+/************************************************************************************/
+
+DIRECTIVAS
+
+  - *ngFor
+  - *ngIf
+  - (click)  => Captura evento
+  - (ngSubmit) => Captura evento
+  - [ngSwitch]
+    + *ngSwitchCase
+  - [(ngModel)]           => two databinding
+  - [ngStyle]             Permite definir un json con varios valores
+    + [style.border]      Aplica a un único estilo
+  - [ngClass]             Permite definir un json con varias clases
+    + [class.fondoAzul]   Aplica a una clase
+  - [routerLink]
+  - [routerLinkActive]
+  - #formCoche="ngForm"
+
+
+/************************************************************************************/
+
+ROUTING
+
+  - Comprobar que la etiqueta <base href="/"> existe en el index.html
+  - En la carpeta app crear el fichero app.routing.ts:
+    + Importar los módulos necesarios
+  - Uso de la etiqueta <router-outlet> para cargar los componentes
+  - [routerLink] para crear enlaces
+  - [routerLinkActive] ruta activa
+
+  - Para pasar parámetros por la url es necesario usar:
+    + import { Router, ActivatedRoute, Params } from '@angular/router';
+    + Definir en el constructor : 
+              private _route: ActivatedRoute,
+              private _router: Router
+
+  ***** IMPORTANTE utilizar las funciones de flecha en las funciones callback para poder salir del ámbito de la función
+
+
+/************************************************************************************/
+
+REDIRECCIONES
+
+  - Crear una función que contenga la dirección a donde se desea ser redirigido:   this._router.navigate(['/contacto','actycrea.es']); 
+    this._router.navigate([URL,PARAMETRO]); el parametro es opcional
+
+/************************************************************************************/
+
+SERVICIOS
+
+  - Clases con un objetivo claro que permiten la reutilización de código
+  - Utiliza el decorador @Injectable
+
+
+  *** CURIOSIDAD en la definición de una función puedo definir el tipo de argumento de entrada y el tipo del valor que devuelve
+      miFuncion(nombre_prenda:string):Array<string>{}
+
+
+/************************************************************************************/
+
+PIPES (|) y FILTERS (tuberías y filtros)
+
+  - new Date permite utilizar pipe | date
+    {{fecha | date: 'dd/MM/yyyy'}}
+
+  - pipe de texto {{nombre | uppercase | lowercase}}
+  - También se pueden generar los propios pipes utilizando:
+      + los paquetes: import {Pipe, PipeTransform} from '@angular/core';
+      + El decorador @Pipe
+      + Implementar la interfaz transform a partir del uso de: export class ConversorPipe implements PipeTransform
+  - Importante añadirlo en app.modules
+
+/************************************************************************************/
+
+FORMULARIO
+
+  - Es necesario tener un modelo 
+

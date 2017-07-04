@@ -62,7 +62,7 @@
 <h3>Selector de colores</h3>
 <button (click)="logColorSeleccionado()"> Mostrar LOG</button>
 <input type="text" [(ngModel)]="color_seleccionado"/>
-<span [style.border]="color_seleccionado == 'red' ? '5px solid black' : '1px solid green' "
+<span [style.border]="color_seleccionado == 'red' ? '5px solid black' : '6px solid blue' "
       [class.fondoAzul]="color_seleccionado == 'blue'" > Color seleccionado: {{color_seleccionado}}</span>
 
 <div [ngStyle]="{
@@ -74,3 +74,22 @@
 }" [style.border]="color_seleccionado == 'red' ? '5px solid black' : '1px solid green' "></div>
 <div style="clear:both"></div>
 
+<hr/>
+
+<h3>Selector de colores</h3>
+<button (click)="logColorSeleccionado()"> Mostrar LOG</button>
+<input type="text" [(ngModel)]="color_seleccionado"/>
+<span [style.border]="color_seleccionado == 'red' ? '5px solid black' : '6px solid blue' "
+      [ngClass]="{
+        fondoAzul: color_seleccionado == 'blue',
+        fondoAzul: color_seleccionado == 'green'
+      }" > Color seleccionado: {{color_seleccionado}}</span>
+
+<div [ngStyle]="{
+  'background': color_seleccionado,
+  'width': '200px',
+  'height':'200px',
+  'float':'right',
+  'margin-right':'69%'
+}" [style.border]="color_seleccionado == 'red' ? '5px solid black' : '1px solid green' "></div>
+<div style="clear:both"></div>

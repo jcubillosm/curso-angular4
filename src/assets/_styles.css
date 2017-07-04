@@ -1,8 +1,18 @@
 
 body {
-  background-color: pink;
+  background-color: #ccf;
 }
 
 .fondoAzul {
   background-color: lightblue !important;
+}
+.fondoVerde{
+  background-color: lightgreen !important;
+}
+.letraGrande {
+  font-size: 40px;
+}
+.active {
+  font-weight: bold;
+  background-color: yellow;
 }
