@@ -96,6 +96,7 @@ TYPESCRIPT
       LET: Ámbito a nivel de BLOQUE
 
   *****IMPORTANTE utilizar las funciones de flecha en las funciones callback para poder salir del ámbito de la función
+      En el callback utilizo una función => para poder salir del ámbito local de la función y asignar valores a las variables de la clase o llamar sus métodos.
 
 /************************************************************************************/
 
@@ -105,6 +106,10 @@ DEFINICIóN DE UNA VARIABLE GENERAL (definición de un MODELO)
     con la llamada 'new' 
       por ejemplo: 
                     this.empleado = new Empleado('David', 45, 'Cocinero', true);
+
+CASTING DE TIPO
+  Puedo hacer un casting de tipo de la siguiente manera var errorMessage = <any>error;
+  se define la variable y se hace casting sobre el valor que se va a asignar
 
 /************************************************************************************/
 
@@ -124,6 +129,7 @@ DIRECTIVAS
   - [routerLink]
   - [routerLinkActive]
   - #formCoche="ngForm"
+  - [disabled]="!formCoche.form.valid"
 
 
 /************************************************************************************/
@@ -164,6 +170,15 @@ SERVICIOS
   *** CURIOSIDAD en la definición de una función puedo definir el tipo de argumento de entrada y el tipo del valor que devuelve
       miFuncion(nombre_prenda:string):Array<string>{}
 
+  - PETICIONES HTTP y AJAX:
+    + import { Http, Response, Headers } from '@angular/http';
+    + import 'rxjs/add/operator/map'; => librería para mapear los datos
+    + import { Observable} from 'rxjs/Observable'; => permite utilizar rxjs para la respuesta mapearla y trabajar con ella
+    + para realizar las peticiones Ajax es necesario añadir: constructor(private _http:Http)
+    + this._http.get(this.url) Realiza la petición a la url indicada
+    + this._http.get(this.url).map(res => res.json()))  El método map() recoge la respuesta que se produce por la anterior petición get
+      ++ res.json() convierte la respuesta en un objeto utilizable en el código
+      ++ Para poder recoger la respuesta del ajax del servicio en un componente que utilice a dicho servicio es necesario utilizar el método subscribe(). Este método tiene dos funciones de callback: 1. para capturar el resultado. 2. para capturar el error.
 
 /************************************************************************************/
 
@@ -183,5 +198,66 @@ PIPES (|) y FILTERS (tuberías y filtros)
 
 FORMULARIO
 
-  - Es necesario tener un modelo 
+  - Es necesario tener un modelo
+  - Validaciones HTML5:
+    + type
+    + required
+    + pattern
+    + name.touched (sustituir name con el correspondiente valor asignado en nombre)
+    + name.valid
+    + maxlength
+    + accept  (solo acepta un tipo de archivo determinado "image/jpg" o extensión ".pdf", puede aceptar más de una extensión "application/pdf,image/jpg" y también varias exttensiones para un tipo de archivo "image/*")
+
+  - [disabled]="!formCoche.form.valid" en el botón de ENVIAR/GUARDAR
+  - (ngSubmit)="onSubmit(); formCoche.reset()"   formCoche.reset() para resetear el form
+
+/************************************************************************************/
+
+NGTEMPLATE
+
+  - Permite hacer un if y un else en las plantillas
+  - ngTemplate genera una "plantilla invisible" que se muestra cuando es necesario
+  - Puede observarse en el ejemplo que se usa un 'else' a un ancla asignado en el tag de ng-template 
+    <div *ngIf="administrador; else noAdmin">
+  - Ejemplo: 
+
+      <div *ngIf="administrador; else noAdmin">
+        <button (click)="cambiar(false)">Cambiar Permisos de administrador</button>
+        <strong style="background-color: orange">Eres el administrador de la webapp</strong>
+      </div>
+      <ng-template #noAdmin>
+        <button (click)="cambiar(true)">Cambiar Permisos de administrador</button>
+        <strong style="background-color: red; color: white;">No Eres el administrador de la webapp</strong>
+      </ng-template>
+
+  - Existe la opción de cargar varios ng-template utilizando 'then' <div *ngIf="administrador; then admin else noAdmin">
+
+/************************************************************************************/
+
+API REST
+
+  Aplicación web a nivel de Backend que va a interactuar con una BBDD
+
+  - Acceso CORS y hosts virtuales
+    Acceso CORS:
+
+    Cuando trabajamos con AJAX puede pasar que nos salten errores con el CORS, antes de empezar configura tu servidor web Apache de esta forma:
+
+    http://victorroblesweb.es/2016/01/20/evitar-error-cors-access-control-allow-origin-con-ajax/
+
+
+    Hosts virtuales:
+
+    Si quieres simular el ambiente que va a tener tu aplicación en producción y no quieres usar el lite-server puedes crear un host virtual en Apache y así simular un dominio real:
+
+    http://victorroblesweb.es/2016/03/26/crear-varios-hosts-virtuales-en-wampserver/
+
+
+  - Si tienes curiosidad, antes de continuar, puedes empezar a revisar como crear un API REST con PHP usando Slim:
+
+    http://victorroblesweb.es/2015/01/16/api-rest-con-slim/
+
+    Además en la sección de cursos de mi blog tienes un curso gratuito acerca de esto.
+
+
 
