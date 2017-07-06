@@ -19,3 +19,17 @@
   <button (click)="cambiar(true)">Cambiar</button>
   <strong style="background:red;color:white;">NO ERES EL administador de la webapp</strong>
 </ng-template>
+
+<componente-hijo 
+    [propiedad_uno]="'Valor propiedad 1'"
+    [texto]="'Valor propiedad 2'"
+    [dato]="dato_externo"
+    [propiedad_cuatro]="identity" 
+    (desde_el_hijo)="recibirDatos($event)"
+>
+</componente-hijo>
+
+<div *ngIf="datos_del_hijo">
+  <h4>{{datos_del_hijo.nombre}}</h4>
+  <h4>{{datos_del_hijo.web}}</h4>
+</div>

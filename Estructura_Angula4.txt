@@ -233,6 +233,85 @@ NGTEMPLATE
   - Existe la opción de cargar varios ng-template utilizando 'then' <div *ngIf="administrador; then admin else noAdmin">
 
 /************************************************************************************/
+  
+COMUNICACIÓN ENTRE COMPONENTES
+
+  COMUNICACIÓN DE PADRE A HIJO
+    - Es necesario añadir en la import Input
+    - Utilizar el decorador @Input()
+      ++ Se puede cambiar el nombre de la variable (solo para el caso del html de entrada) 
+                   @Input('texto') propiedad_dos: string;
+
+      Así, el código que llama al componente le pasa el valor a la variable 'texto' en lugar de a 'propiedades_dos' pero para imprimirlo es necesario hacerlo con el nombre con el que se ha declarado {{propiedad_dos}}
+    - El paso de valores desde el html al componente se realiza de la siguiente manera:
+        <componente-hijo [propiedad_uno]="'Valor propiedad 1'" [texto]="'Valor propiedad 2'"></componente-hijo>
+
+        [NOMBRE VARIABLE] =" 'CADENA DE TEXTO' "
+        [NOMBRE VARIABLE] =" VARIABLE "
+
+        + En el caso de querer pasar una cadena de texto literal es necesario poner las comillas simples ''
+        + Si no se utilizan las comillas simples se va a tomar el valor que contiene dicha variable
+
+          [animal]=" 'GATO' " => Imprimiría la palabra GATO
+          [animal]=" GATO "  => Imprimiría el valor que contiene la variable GATO
+
+    - Si realizo un console.log() en el constructor para imprimir una variable de entrada se va a imprimir un UNDEFINED, si lo hago en el ngOnInit() imprime el valor.
+
+  COMUNICACIÓN DE HIJO A PADRE
+    - Importar Output y el módulo EventEmitter (permite crear un evento y lanzarlo)
+         @Output() desde_el_hijo = new EventEmitter();
+    - Se lanzan los datos fuera del hijo SOLO cuando se produce un EVENTO como el click en un botón
+
+      + En una función añado el método emit a la variable a lanzar (desde el hijo):
+
+        enviar(event){
+          this.desde_el_hijo.emit({nombre: 'Emilia Casas'});
+        }
+
+      + El html del hijo necesita un botón con un click a esa función de enviar:
+        <button (click)="enviar($event)">
+
+        *********Por confirmar si se puede realizar llamando a la función desde el ngOnInit(){}   
+                CONFIRMADO: pero entonces es necesario quitar el argumento $event porque no se produce por un evento sino por una llamada
+
+        ¡¡¡¡¡¡¡¡¡¡¡¡¡¡ NO ES NECESARIO UTILIZAR EL ARGUMENTO $EVENT, EVENT !!!!!!!!!!!!
+
+      + En la llamada desde el padre al componente realizo una llamada a un método que tiene el padre encargado de recibir los eventos:
+
+          <componente-hijo [propiedad_uno]="'Valor propiedad 1'" (desde_el_hijo)="recibirDatos($event)"> </componente-hijo>
+
+              ************* (desde_el_hijo)="recibirDatos($event)"  *************
+
+          +++ El padre tiene la definición del método:
+                  recibirDatos(event){
+
+                  }
+
+/************************************************************************************/
+
+ANGULAR EN PRODUCCIÓN
+
+  Paso 1: Crear proycto con Angular CLI: ng new nombreAPP
+  Paso 2: Copiar directorio app del proyecto ya creado
+  Paso 3: Cambiar paths de vistas e imagenes para adaptar a la estructura de CLI
+  Paso 4: Probar la APP con ng serve
+  Paso 5: Generar build: ng build --prod
+  paso 6: Copiar al directorio del servidor (host)
+  paso 7: Cambiar base url (si estamos en un subdirectorio)
+  paso 8: Añadir .htaccess (si estamos en un subdirectorio)
+
+  <IfModule mod_rewrite.c>
+    Options Indexes FollowSymLinks
+    ResriteEngine On
+    RewriteBase /CARPETADELPROYECTO/
+    RewriteRule îndex.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . index.html [L]
+  </IfModule>
+
+
+/************************************************************************************/
 
 API REST
 
