@@ -214,6 +214,7 @@ SERVICIOS
       miFuncion(nombre_prenda:string):Array<string>{}
 
   - PETICIONES HTTP y AJAX:
+    + import { Injectable } from '@angular/core';
     + import { Http, Response, Headers } from '@angular/http';
     + import 'rxjs/add/operator/map'; => librería para mapear los datos
     + import { Observable} from 'rxjs/Observable'; => permite utilizar rxjs para la respuesta mapearla y trabajar con ella
