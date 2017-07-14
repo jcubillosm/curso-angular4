@@ -1,3 +1,46 @@
+Índice del curso:
+
+Sección 1:
+  - Introducción
+Sección 2:
+  - Instalaciones y primeros pasos
+Sección 3:
+  - Componentes y plantillas
+Sección 4:
+  - TypeScript dentro de Angular 4
+Sección 5:
+  - Directivas, binding y eventos
+    + ¿Qués una directiva?
+    + Directiva ngIf y evento click
+    + Directiva ngFor
+    + Directivas ngSwitch y ngStyle
+    + Two way data-binding
+    + ngStyle en atributo
+    + ngClasss en atributo
+    + Directiva ngClass
+Sección 6:
+  - Servicios
+Sección 7:
+  -pipes
+Sección 9: 
+  - Formularios
+Sección 10:
+  -Servicios, HTTP y AJAX
+Sección 11:
+  - ngTemplate (if, else y then)
+Sección 12:
+  - Creando un API REST
+Sección 13:
+  - Desarrollando una webapp completa
+Sección 14:
+  - Comunicación entre componentes
+    + Decorador @Input
+    + Decorador @Output
+Sección 15:
+  -Tips, Tricks y extras
+
+/**********************************************************************/
+
 Estructura del fichero de Angula 4:
 
 -Node_modules:
